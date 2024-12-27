@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Checkbox,
   Divider,
   Group,
@@ -13,6 +14,7 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
+import OutcomeForm from "./components/OutcomeForm";
 
 const marks = [
   { value: 1, label: 1 },
@@ -259,6 +261,8 @@ function App() {
       </Checkbox.Group>
 
       <Divider my="md" />
+      <Button variant="light">Add Outcome</Button>
+      <OutcomeForm />
     </Box>
   );
 }
