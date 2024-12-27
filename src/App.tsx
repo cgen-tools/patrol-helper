@@ -7,14 +7,14 @@ import {
   MultiSelect,
   Radio,
   RangeSlider,
-  SegmentedControl,
-  SimpleGrid,
   Slider,
   Space,
   Stack,
   Text,
 } from "@mantine/core";
 import OutcomeForm from "./components/OutcomeForm";
+import CatTypeSelector from "./components/CatTypeSelector";
+import { useState } from "react";
 
 const marks = [
   { value: 1, label: 1 },
@@ -56,6 +56,7 @@ const skills = ["1", "2", "3", "4"].flatMap((n) => {
 });
 
 function App() {
+  const [numCatType, setNumCatType] = useState<[number, number] | undefined>(undefined);
   return (
     <Box maw="40em" p="lg">
       <Checkbox.Group required label="Biome">
@@ -105,73 +106,8 @@ function App() {
       <Text mt="sm" fw={500} size="sm">
         Cats of Specific Type
       </Text>
-      <SimpleGrid cols={2}>
-        <Text size="sm">Warriors</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-        <div></div>
-        <RangeSlider
-          size="md"
-          marks={marks}
-          minRange={0}
-          min={1}
-          max={6}
-          step={1}
-          pb="lg"
-        />
 
-        <Text size="sm">Medicine Cats</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">Leaders</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">Deputies</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">Warrior Apprentices</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">Medicine Cat Apprentices</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">
-          Healer Cats (medicine cats & medicine cat apprentices)
-        </Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">Normal Adults (warriors & leaders & deputies)</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-
-        <Text size="sm">All Apprentices</Text>
-        <SegmentedControl
-          defaultValue="Don't Care"
-          data={["Forbidden", "Don't Care", "Required"]}
-        />
-      </SimpleGrid>
+      <CatTypeSelector label="Warriors" value={numCatType} setValue={setNumCatType}/>
 
       <Text mt="sm" fw={500} size="sm">
         p_l Minimum Skill Level Requirements (only one needs to be true)
