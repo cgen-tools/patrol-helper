@@ -177,7 +177,7 @@ function App() {
       <Text size="xs">
         Higher levels of SKILL will also fulfill the requirement
       </Text>
-      <MultiSelect placeholder="None" data={skills} searchable />
+      <MultiSelect placeholder="Select skills" data={skills} searchable />
 
       <Checkbox.Group mt="sm" label="Required Relationships">
         <Stack gap="xs">
