@@ -107,7 +107,7 @@ function App() {
         Cats of Specific Type
       </Text>
 
-      <CatTypeSelector label="Warriors" value={numCatType} setValue={setNumCatType}/>
+      <CatTypeSelector label="Warriors" value={numCatType} onChange={setNumCatType}/>
 
       <Text mt="sm" fw={500} size="sm">
         p_l Minimum Skill Level Requirements (only one needs to be true)

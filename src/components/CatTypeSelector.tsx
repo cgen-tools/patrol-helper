@@ -24,11 +24,11 @@ enum allowedState {
 function CatTypeSelector({
   label,
   value,
-  setValue,
+  onChange,
 }: {
   label: string;
   value: [number, number] | undefined;
-  setValue: React.Dispatch<[number, number] | undefined>;
+  onChange: (val: [number, number] | undefined) => void | undefined;
 }) {
 
   var allowedStatus: allowedState = allowedState.DontCare;
@@ -59,11 +59,11 @@ function CatTypeSelector({
             value={allowedStatus}
             onChange={(newAllowedStatus) => {
               if (newAllowedStatus == allowedState.DontCare) {
-                setValue(undefined);
+                onChange(undefined);
               } else if (newAllowedStatus == allowedState.Forbidden) {
-                setValue([-1, -1]);
+                onChange([-1, -1]);
               } else {
-                setValue([1, 6]);
+                onChange([1, 6]);
               }
             }}
           />
@@ -80,7 +80,7 @@ function CatTypeSelector({
               marks={marks}
               pb="xl"
               value={value}
-              onChange={setValue}
+              onChange={onChange}
             />
           </GridCol>
         )}
