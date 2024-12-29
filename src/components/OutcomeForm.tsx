@@ -1,5 +1,6 @@
 import { Checkbox, Fieldset, Group, MultiSelect, Radio, Space, Text } from "@mantine/core";
 import { SKILLS, TRAITS } from "../resources";
+import InjuryOutcomeForm from "./InjuryOutcomeForm";
 
 function OutcomeForm() {
   return (
@@ -67,6 +68,11 @@ function OutcomeForm() {
           <Checkbox value="multi" label="Multiple cats, but not the whole patrol" />
         </Group>
       </Checkbox.Group>
+
+      <Text mt="sm" fw={500} size="sm">
+        Injuries
+      </Text>
+      <InjuryOutcomeForm />
     </Fieldset>
   )
 }
