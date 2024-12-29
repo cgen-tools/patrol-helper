@@ -12,6 +12,7 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
+import { SKILLS } from "./resources";
 import OutcomeForm from "./components/OutcomeForm";
 import CatTypeSelector from "./components/CatTypeSelector";
 import { useState } from "react";
@@ -24,36 +25,6 @@ const marks = [
   { value: 5 },
   { value: 6, label: 6 },
 ];
-
-const skillTypes = [
-  "TEACHER",
-  "HUNTER",
-  "FIGHTER",
-  "RUNNER",
-  "CLIMBER",
-  "SWIMMER",
-  "SPEAKER",
-  "MEDIATOR",
-  "CLEVER",
-  "INSIGHTFUL",
-  "SENSE",
-  "KIT",
-  "STORY",
-  "LORE",
-  "CAMP",
-  "HEALER",
-  "STAR",
-  "DARK",
-  "OMEN",
-  "DREAM",
-  "CLAIRVOYANT",
-  "PROPHET",
-  "GHOST",
-];
-
-const skills = ["1", "2", "3", "4"].flatMap((n) => {
-  return skillTypes.map((value) => `${value},${n}`);
-});
 
 function App() {
   const [numCatType, setNumCatType] = useState<[number, number] | undefined>(undefined);
@@ -115,7 +86,7 @@ function App() {
       <Text size="xs">
         Higher levels of SKILL will also fulfill the requirement
       </Text>
-      <MultiSelect placeholder="Select skills" data={skills} searchable />
+      <MultiSelect placeholder="Select skills" data={SKILLS} searchable />
 
       <Checkbox.Group mt="sm" label="Required Relationships">
         <Stack gap="xs">
