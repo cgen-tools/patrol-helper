@@ -28,4 +28,46 @@ const SKILLS = ["1", "2", "3", "4"].flatMap((n) => {
   return SKILL_TYPES.map((value) => `${value},${n}`);
 });
 
-export { SKILLS };
+const TRAITS = [
+  "troublesome",
+  "lonesome",
+  "fierce",
+  "bloodthirsty",
+  "cold",
+  "childish",
+  "playful",
+  "charismatic",
+  "bold",
+  "daring",
+  "nervous",
+  "righteous",
+  "insecure",
+  "strict",
+  "compassionate",
+  "thoughtful",
+  "ambitious",
+  "confident",
+  "adventurous",
+  "calm",
+  "careful",
+  "faithful",
+  "loving",
+  "loyal",
+  "responsible",
+  "shameless",
+  "sneaky",
+  "strange",
+  "vengeful",
+  "wise",
+  "arrogant",
+  "competitive",
+  "grumpy",
+  "cunning",
+  "oblivious",
+  "gloomy",
+  "sincere",
+  "flamboyant",
+  "rebellious"
+]
+
+export { SKILLS, TRAITS };
