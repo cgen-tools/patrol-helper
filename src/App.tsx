@@ -168,8 +168,8 @@ function App() {
       </Checkbox.Group>
 
       <Divider my="md" />
-      <Button variant="light">Add Outcome</Button>
       <OutcomeForm />
+      <Button variant="light">Add Outcome</Button>
     </Box>
   );
 }
