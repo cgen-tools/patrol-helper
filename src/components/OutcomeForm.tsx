@@ -1,6 +1,7 @@
-import { Checkbox, Fieldset, Group, MultiSelect, Radio, Space, Text } from "@mantine/core";
+import { Box, Checkbox, Fieldset, Group, MultiSelect, Radio, Space, Text, Textarea } from "@mantine/core";
 import { SKILLS, TRAITS } from "../resources";
 import InjuryOutcomeForm from "./InjuryOutcomeForm";
+import RelationshipsForm from "./RelationshipsForm";
 
 function OutcomeForm() {
   return (
@@ -73,6 +74,31 @@ function OutcomeForm() {
         Injuries
       </Text>
       <InjuryOutcomeForm />
+
+      <Text mt="sm" fw={500} size="sm">
+        History
+      </Text>
+      <Box pl="sm">
+        <Textarea
+          label="Death history for non-leaders"
+          description="Should be a whole sentence"
+        />
+        <Textarea
+          label="Death history for leaders"
+          description="Should be a sentence fragment"
+        />
+        <Textarea
+          label="History if cat gets a scar"
+          description="Should be a whole sentence"
+        />
+      </Box>
+
+      <Text mt="sm" fw={500} size="sm">
+        Relationships
+      </Text>
+      <Box pl="sm">
+        <RelationshipsForm />
+      </Box>
     </Fieldset>
   )
 }
