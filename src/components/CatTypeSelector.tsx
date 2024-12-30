@@ -52,8 +52,8 @@ function CatTypeSelector({
           <SegmentedControl
             fullWidth
             data={[
-              allowedState.DontCare,
               allowedState.Forbidden,
+              allowedState.DontCare,
               allowedState.Required,
             ]}
             value={allowedStatus}
