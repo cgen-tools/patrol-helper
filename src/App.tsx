@@ -26,11 +26,147 @@ const marks = [
   { value: 6, label: 6 },
 ];
 
+type CatTypeCount = {
+  name: string;
+  label: string;
+  value: undefined | [number, number];
+};
+
+const defaultCatTypeCount: CatTypeCount[] = [
+  {
+    name: "warrior",
+    label: "Warriors",
+    value: undefined,
+  },
+  {
+    name: "normal_adult",
+    label: "Warriors, Leaders, or Deputies",
+    value: undefined,
+  },
+  {
+    name: "medicine cat",
+    label: "Medicine Cats",
+    value: undefined,
+  },
+  {
+    name: "leader",
+    label: "Leaders",
+    value: undefined,
+  },
+  {
+    name: "deputy",
+    label: "Deputies",
+    value: undefined,
+  },
+  {
+    name: "apprentice",
+    label: "Warrior Apprentices",
+    value: undefined,
+  },
+  {
+    name: "medicine cat apprentice",
+    label: "Medicine Cat Apprentices",
+    value: undefined,
+  },
+  {
+    name: "healer cats",
+    label: "Medicine Cats or Medicine Cat Apprentices",
+    value: undefined,
+  },
+  {
+    name: "all apprentices",
+    label: "Any Kind of Apprentices",
+    value: undefined,
+  },
+];
+
+const defaultMinRelationships = [
+  {
+    name: "romantic",
+    label: "Romantic Like",
+    value: 0,
+  },
+  {
+    name: "platonic",
+    label: "Platonic Like",
+    value: 0,
+  },
+  {
+    name: "dislike",
+    label: "Dislike",
+    value: 0,
+  },
+  {
+    name: "comfort",
+    label: "Comfort",
+    value: 0,
+  },
+  {
+    name: "jealousy",
+    label: "Jealousy",
+    value: 0,
+  },
+  {
+    name: "trust",
+    label: "Trust",
+    value: 0,
+  },
+  {
+    name: "admiration",
+    label: "Admiration",
+    value: 0,
+  },
+];
+
 function App() {
-  const [numCatType, setNumCatType] = useState<[number, number] | undefined>(undefined);
+  const [catTypeCounts, setCatTypeCounts] = useState(defaultCatTypeCount);
+  const [biome, setBiome] = useState<string[]>(["any"]);
+  const [season, setSeason] = useState<string[]>(["any"]);
+  const [patrolType, setPatrolType] = useState("hunting");
+  const [numCats, setNumCats] = useState<[number, number]>([1, 6]);
+  const [plSkillReqs, setPlSkillReqs] = useState<string[]>([]);
+  const [relationshipReqs, setRelationshipReqs] = useState<string[]>([]);
+  const [minRelationships, setMinRelationships] = useState(
+    defaultMinRelationships,
+  );
+  const [rarity, setRarity] = useState("standard");
+  const [difficulty, setDifficulty] = useState("standard");
+  const [misc, setMisc] = useState<string[]>([]);
+
+  function handleCatTypeCountsChange(
+    index: number,
+    value: [number, number] | undefined,
+  ) {
+    const newCatTypeCounts = catTypeCounts.map((v, i) => {
+      if (i === index) {
+        return {
+          ...v,
+          value: value,
+        };
+      } else {
+        return v;
+      }
+    });
+    setCatTypeCounts(newCatTypeCounts);
+  }
+
+  function handleMinRelationshipsChange(index: number, value: number) {
+    const newMinRelationships = minRelationships.map((v, i) => {
+      if (i === index) {
+        return {
+          ...v,
+          value: value,
+        };
+      } else {
+        return v;
+      }
+    });
+    setMinRelationships(newMinRelationships);
+  }
+
   return (
     <Box maw="40em" p="lg">
-      <Checkbox.Group required label="Biome">
+      <Checkbox.Group value={biome} onChange={setBiome} required label="Biome">
         <Group>
           <Checkbox value="any" label="Any" />
           <Checkbox value="mountainous" label="Mountainous" />
@@ -42,7 +178,13 @@ function App() {
         </Group>
       </Checkbox.Group>
 
-      <Checkbox.Group required mt="sm" label="Season">
+      <Checkbox.Group
+        value={season}
+        onChange={setSeason}
+        required
+        mt="sm"
+        label="Season"
+      >
         <Group>
           <Checkbox value="any" label="Any" />
           <Checkbox value="newleaf" label="Newleaf" />
@@ -52,7 +194,13 @@ function App() {
         </Group>
       </Checkbox.Group>
 
-      <Radio.Group mt="sm" required label="Patrol Type">
+      <Radio.Group
+        value={patrolType}
+        onChange={setPatrolType}
+        mt="sm"
+        required
+        label="Patrol Type"
+      >
         <Group>
           <Radio value="hunting" label="Hunting" />
           <Radio value="herb_gathering" label="Herb Gathering" />
@@ -65,6 +213,8 @@ function App() {
         Number of Cats
       </Text>
       <RangeSlider
+        value={numCats}
+        onChange={setNumCats}
         size="md"
         marks={marks}
         minRange={0}
@@ -78,7 +228,15 @@ function App() {
         Cats of Specific Type
       </Text>
 
-      <CatTypeSelector label="Warriors" value={numCatType} onChange={setNumCatType}/>
+      {catTypeCounts.map((value, index) => (
+        <CatTypeSelector
+          label={value.label}
+          value={catTypeCounts[index].value}
+          onChange={(newValue) => {
+            handleCatTypeCountsChange(index, newValue);
+          }}
+        />
+      ))}
 
       <Text mt="sm" fw={500} size="sm">
         p_l Minimum Skill Level Requirements (only one needs to be true)
@@ -86,9 +244,20 @@ function App() {
       <Text size="xs">
         Higher levels of SKILL will also fulfill the requirement
       </Text>
-      <MultiSelect placeholder="Select skills" data={SKILLS} searchable />
+      <MultiSelect
+        value={plSkillReqs}
+        onChange={setPlSkillReqs}
+        placeholder="Select skills"
+        data={SKILLS}
+        searchable
+      />
 
-      <Checkbox.Group mt="sm" label="Required Relationships">
+      <Checkbox.Group
+        value={relationshipReqs}
+        onChange={setRelationshipReqs}
+        mt="sm"
+        label="Required Relationships"
+      >
         <Stack gap="xs">
           <Checkbox value="siblings" label="Everyone is siblings" />
           <Checkbox value="parent/child" label="p_l is parent of r_c" />
@@ -116,28 +285,31 @@ function App() {
       <Text fw={500} mt="lg" size="sm">
         Required Minimum Relationships (between every cat on patrol)
       </Text>
-      <Text size="sm">Romantic Like</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
-      <Space />
-      <Text size="sm">Platonic Like</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
-      <Space />
-      <Text size="sm">Dislike</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
-      <Space />
-      <Text size="sm">Comfort</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
-      <Space />
-      <Text size="sm">Jealousy</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
-      <Space />
-      <Text size="sm">Trust</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
-      <Space />
-      <Text size="sm">Admiration</Text>
-      <Slider size="md" min={0} max={100} step={1} defaultValue={0} />
+      {minRelationships.map((value, index) => {
+        return (
+          <>
+            <Text size="sm">{value.label}</Text>
+            <Slider
+              onChange={(newValue) =>
+                handleMinRelationshipsChange(index, newValue)
+              }
+              value={value.value}
+              size="md"
+              min={0}
+              max={100}
+              step={1}
+            />
+          </>
+        );
+      })}
 
-      <Radio.Group mt="sm" defaultValue="standard" label="Rarity">
+      <Radio.Group
+        value={rarity}
+        onChange={setRarity}
+        mt="sm"
+        defaultValue="standard"
+        label="Rarity"
+      >
         <Group>
           <Radio value="prevalent" label="Prevalent" />
           <Radio value="common" label="Common" />
@@ -147,7 +319,13 @@ function App() {
         </Group>
       </Radio.Group>
 
-      <Radio.Group mt="sm" defaultValue="standard" label="Difficulty">
+      <Radio.Group
+        value={difficulty}
+        onChange={setDifficulty}
+        mt="sm"
+        defaultValue="standard"
+        label="Difficulty"
+      >
         <Group>
           <Radio value="very_easy" label="Very Easy" />
           <Radio value="easy" label="Easy" />
@@ -157,7 +335,7 @@ function App() {
         </Group>
       </Radio.Group>
 
-      <Checkbox.Group mt="sm" label="Misc.">
+      <Checkbox.Group value={misc} onChange={setMisc} mt="sm" label="Misc.">
         <Stack gap="xs">
           <Checkbox value="new_years" label="Can only occur on Halloween" />
           <Checkbox
