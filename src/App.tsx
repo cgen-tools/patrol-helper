@@ -11,6 +11,7 @@ import {
   Space,
   Stack,
   Text,
+  Textarea,
 } from "@mantine/core";
 import { SKILLS } from "./resources";
 import OutcomeForm from "./components/OutcomeForm";
@@ -132,6 +133,9 @@ function App() {
   const [rarity, setRarity] = useState("standard");
   const [difficulty, setDifficulty] = useState("standard");
   const [misc, setMisc] = useState<string[]>([]);
+
+  const [introText, setIntroText] = useState("");
+  const [declineText, setDeclineText] = useState("");
 
   function handleCatTypeCountsChange(
     index: number,
@@ -344,6 +348,23 @@ function App() {
           />
         </Stack>
       </Checkbox.Group>
+
+      <Divider my="md" />
+      <Textarea
+        value={introText}
+        onChange={(e) => setIntroText(e.currentTarget.value)}
+        label="Intro text"
+        placeholder="Enter text"
+        required
+      />
+      <Textarea
+        value={declineText}
+        onChange={(e) => setDeclineText(e.currentTarget.value)}
+        mt="sm"
+        label="Decline text"
+        placeholder="Enter text"
+        required
+      />
 
       <Divider my="md" />
       <OutcomeForm />
