@@ -14,6 +14,7 @@ import {
   Textarea,
 } from "@mantine/core";
 import { SKILLS } from "./resources";
+import { Outcome } from "./types";
 import OutcomeForm from "./components/OutcomeForm";
 import CatTypeSelector from "./components/CatTypeSelector";
 import { useState } from "react";
@@ -137,6 +138,8 @@ function App() {
   const [introText, setIntroText] = useState("");
   const [declineText, setDeclineText] = useState("");
 
+  const [outcomes, setOutcomes] = useState<Outcome[]>([]);
+
   function handleCatTypeCountsChange(
     index: number,
     value: [number, number] | undefined,
@@ -166,6 +169,15 @@ function App() {
       }
     });
     setMinRelationships(newMinRelationships);
+  }
+
+  function addOutcome() {
+    const newOutcome: Outcome = {
+      outcomeType: 'success',
+      exp: 20,
+      text: ''
+    }
+    setOutcomes([...outcomes, newOutcome]);
   }
 
   return (
@@ -367,8 +379,9 @@ function App() {
       />
 
       <Divider my="md" />
-      <OutcomeForm />
-      <Button variant="light">Add Outcome</Button>
+      {outcomes.map((outcome) => 
+        <OutcomeForm outcome={outcome} />)}
+      <Button variant="light" onClick={addOutcome}>Add Outcome</Button>
     </Box>
   );
 }
