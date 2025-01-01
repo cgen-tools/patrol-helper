@@ -173,11 +173,22 @@ function App() {
 
   function addOutcome() {
     const newOutcome: Outcome = {
-      outcomeType: 'success',
+      outcomeType: "success",
       exp: 20,
-      text: ''
-    }
+      text: "",
+    };
     setOutcomes([...outcomes, newOutcome]);
+  }
+
+  function editOutcome(index: number, newOutcome: Outcome) {
+    const newOutcomes = outcomes.map((v, i) => {
+      if (i === index) {
+        return newOutcome;
+      } else {
+        return v;
+      }
+    });
+    setOutcomes(newOutcomes);
   }
 
   return (
@@ -379,9 +390,15 @@ function App() {
       />
 
       <Divider my="md" />
-      {outcomes.map((outcome) => 
-        <OutcomeForm outcome={outcome} />)}
-      <Button variant="light" onClick={addOutcome}>Add Outcome</Button>
+      {outcomes.map((outcome, index) => (
+        <OutcomeForm
+          outcome={outcome}
+          setOutcome={(newValue) => editOutcome(index, newValue)}
+        />
+      ))}
+      <Button variant="light" onClick={addOutcome}>
+        Add Outcome
+      </Button>
     </Box>
   );
 }

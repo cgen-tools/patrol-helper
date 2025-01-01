@@ -1,10 +1,23 @@
 import { Fieldset, Group, NumberInput, Radio, Textarea } from "@mantine/core";
 import { Outcome } from "../types";
 
-function OutcomeForm({outcome}: {outcome: Outcome}) {
+function OutcomeForm({
+  outcome,
+  setOutcome,
+}: {
+  outcome: Outcome;
+  setOutcome: (value: Outcome) => void;
+}) {
   return (
     <Fieldset>
-      <Radio.Group value={outcome.outcomeType} defaultValue="standard" label="Outcome Type">
+      <Radio.Group
+        value={outcome.outcomeType}
+        onChange={(newValue) =>
+          setOutcome({ ...outcome, outcomeType: newValue })
+        }
+        defaultValue="standard"
+        label="Outcome Type"
+      >
         <Group>
           <Radio value="success" label="Success" />
           <Radio value="failure" label="Failure" />
@@ -13,10 +26,21 @@ function OutcomeForm({outcome}: {outcome: Outcome}) {
         </Group>
       </Radio.Group>
 
-      <NumberInput value={outcome.exp} mt="sm" label="Experience" defaultValue={20} />
+      <NumberInput
+        value={outcome.exp}
+        onChange={(newValue) =>
+          setOutcome({ ...outcome, exp: Number(newValue) })
+        }
+        mt="sm"
+        label="Experience"
+        defaultValue={20}
+      />
 
       <Textarea
         value={outcome.text}
+        onChange={(newValue) =>
+          setOutcome({ ...outcome, text: newValue.target.value })
+        }
         mt="sm"
         label="Outcome text"
         placeholder="Enter text"
