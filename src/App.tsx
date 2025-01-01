@@ -364,7 +364,7 @@ function App() {
 
       <Checkbox.Group value={misc} onChange={setMisc} mt="sm" label="Misc.">
         <Stack gap="xs">
-          <Checkbox value="new_years" label="Can only occur on Halloween" />
+          <Checkbox value="halloween" label="Can only occur on Halloween" />
           <Checkbox
             value="disaster"
             label="Only allowed when disasters are enabled"
