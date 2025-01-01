@@ -191,6 +191,111 @@ function App() {
     setOutcomes(newOutcomes);
   }
 
+  function exportOutcome(outcome: Outcome) {
+    const o: Record<string, any> = {
+      text: outcome.text,
+      exp: outcome.exp,
+    };
+    return o;
+  }
+
+  function exportPatrol() {
+    const o: Record<string, any> = {
+      biome: biome,
+      season: season,
+      types: [patrolType],
+      min_cats: numCats[0],
+      max_cats: numCats[1],
+      intro_text: introText,
+      decline_text: declineText,
+    };
+
+    const tags = [];
+
+    // set min_max_status
+    const min_max_status: Record<string, [number, number]> = {};
+    for (const catTypeCount of catTypeCounts) {
+      if (catTypeCount.value !== undefined) {
+        min_max_status[catTypeCount.name] = catTypeCount.value;
+      }
+    }
+    if (Object.keys(min_max_status).length !== 0) {
+      o["min_max_status"] = min_max_status;
+    }
+
+    // set relationship_constraints + tags
+    const relationship_constraints: string[] = [];
+    for (const constraint of relationshipReqs) {
+      if (constraint == "rom_two_apps") {
+        tags.push("rom_two_apps");
+      } else if (constraint === "romantic") {
+        tags.push("romantic");
+      } else {
+        relationship_constraints.push(constraint);
+      }
+    }
+    for (const minRelationship of minRelationships) {
+      if (minRelationship.value > 0) {
+        relationship_constraints.push(
+          `${minRelationship.name}_${minRelationship.value}`,
+        );
+      }
+    }
+    if (relationship_constraints.length !== 0) {
+      o["relationship_constraints"] = relationship_constraints;
+    }
+
+    // set pl_skill_constraint
+    if (plSkillReqs !== null && plSkillReqs.length !== 0) {
+      o["pl_skill_constraint"] = plSkillReqs;
+    }
+
+    // set weight
+    o["weight"] = 20;
+
+    // set chance_of_success
+    o["chance_of_success"] = 40;
+
+    // set misc tags
+    for (const tag of misc) {
+      tags.push(tag);
+    }
+    if (tags.length !== 0) {
+      o["tags"] = tags;
+    }
+
+    const antag_failures = [];
+    const antag_successes = [];
+    const successes = [];
+    const failures = [];
+    for (const outcome of outcomes) {
+      const outcomeObject = exportOutcome(outcome);
+      if (outcome.outcomeType === "antag_success") {
+        antag_successes.push(outcomeObject);
+      } else if (outcome.outcomeType === "antag_failure") {
+        antag_failures.push(outcomeObject);
+      } else if (outcome.outcomeType === "success") {
+        successes.push(outcomeObject);
+      } else if (outcome.outcomeType === "failure") {
+        failures.push(outcomeObject);
+      }
+    }
+    if (antag_failures.length !== 0) {
+      o["antag_fail_outcomes"] = antag_failures;
+    }
+    if (antag_successes.length !== 0) {
+      o["antag_success_outcomes"] = antag_successes;
+    }
+    if (successes.length !== 0) {
+      o["success_outcomes"] = successes;
+    }
+    if (failures.length !== 0) {
+      o["fail_outcomes"] = failures;
+    }
+
+    console.log(o);
+  }
+
   return (
     <Box maw="40em" p="lg">
       <Checkbox.Group value={biome} onChange={setBiome} required label="Biome">
@@ -399,6 +504,8 @@ function App() {
       <Button variant="light" onClick={addOutcome}>
         Add Outcome
       </Button>
+
+      <Button onClick={exportPatrol}>To JSON Object</Button>
     </Box>
   );
 }
