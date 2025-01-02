@@ -21,15 +21,7 @@ import CatTypeSelector from "./components/CatTypeSelector";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { CodeHighlight } from "@mantine/code-highlight";
-
-const marks = [
-  { value: 1, label: 1 },
-  { value: 2 },
-  { value: 3 },
-  { value: 4 },
-  { value: 5 },
-  { value: 6, label: 6 },
-];
+import NumCatsSlider from "./components/NumCatsSlider";
 
 type CatTypeCount = {
   name: string;
@@ -349,20 +341,11 @@ function App() {
         </Group>
       </Radio.Group>
 
-      <Text fw={500} mt="sm" size="sm">
-        Number of Cats
-      </Text>
-      <RangeSlider
+      <NumCatsSlider
         value={numCats}
         onChange={setNumCats}
-        size="md"
-        marks={marks}
-        minRange={0}
-        min={1}
-        max={6}
-        step={1}
+        label="Number of Cats"
       />
-      <Space h="md" />
 
       <Text mt="sm" fw={500} size="sm">
         Cats of Specific Type
