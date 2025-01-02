@@ -46,7 +46,7 @@ function OutcomeForm({
         placeholder="Enter text"
       />
     </Fieldset>
-  )
+  );
 }
 
 export default OutcomeForm;

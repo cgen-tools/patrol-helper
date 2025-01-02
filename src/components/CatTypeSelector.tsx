@@ -30,7 +30,6 @@ function CatTypeSelector({
   value: [number, number] | undefined;
   onChange: (val: [number, number] | undefined) => void | undefined;
 }) {
-
   var allowedStatus: allowedState = allowedState.DontCare;
   if (value === undefined) {
     allowedStatus = allowedState.DontCare;

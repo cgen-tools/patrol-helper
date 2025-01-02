@@ -12,11 +12,11 @@ const marks = [
 function NumCatsSlider({
   value,
   onChange,
-  label
+  label,
 }: {
   value: [number, number] | undefined;
   onChange: (v: [number, number]) => void;
-  label: string
+  label: string;
 }) {
   return (
     <>

@@ -67,8 +67,8 @@ const TRAITS = [
   "gloomy",
   "sincere",
   "flamboyant",
-  "rebellious"
-]
+  "rebellious",
+];
 
 const INJURIES = [
   "claw-wound",
@@ -121,7 +121,7 @@ const INJURIES = [
   "small_bite_injury",
   "beak_bite",
   "rat_bite",
-  "sickness"
-]
+  "sickness",
+];
 
 export { SKILLS, TRAITS, INJURIES };

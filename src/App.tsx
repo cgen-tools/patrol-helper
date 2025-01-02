@@ -491,10 +491,14 @@ function App() {
         Add Outcome
       </Button>
 
-      <Button onClick={() => {
-        setCode(exportPatrol());
-        open();
-      }}>To JSON Object</Button>
+      <Button
+        onClick={() => {
+          setCode(exportPatrol());
+          open();
+        }}
+      >
+        To JSON Object
+      </Button>
 
       <Modal opened={opened} onClose={close}>
         <CodeHighlight code={code} language="json" />
