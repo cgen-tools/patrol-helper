@@ -200,15 +200,15 @@ function App() {
   }
 
   function exportOutcome(outcome: Outcome) {
-    const o: Record<string, any> = {
+    const outcomeObject: Record<string, any> = {
       text: outcome.text,
       exp: outcome.exp,
     };
-    return o;
+    return outcomeObject;
   }
 
   function exportPatrol() {
-    const o: Record<string, any> = {
+    const patrolObject: Record<string, any> = {
       biome: biome,
       season: season,
       types: [patrolType],
@@ -228,7 +228,7 @@ function App() {
       }
     }
     if (Object.keys(min_max_status).length !== 0) {
-      o["min_max_status"] = min_max_status;
+      patrolObject["min_max_status"] = min_max_status;
     }
 
     // set relationship_constraints + tags
@@ -250,26 +250,26 @@ function App() {
       }
     }
     if (relationship_constraints.length !== 0) {
-      o["relationship_constraints"] = relationship_constraints;
+      patrolObject["relationship_constraints"] = relationship_constraints;
     }
 
     // set pl_skill_constraint
     if (plSkillReqs !== null && plSkillReqs.length !== 0) {
-      o["pl_skill_constraint"] = plSkillReqs;
+      patrolObject["pl_skill_constraint"] = plSkillReqs;
     }
 
     // set weight
-    o["weight"] = 20;
+    patrolObject["weight"] = 20;
 
     // set chance_of_success
-    o["chance_of_success"] = 40;
+    patrolObject["chance_of_success"] = 40;
 
     // set misc tags
     for (const tag of misc) {
       tags.push(tag);
     }
     if (tags.length !== 0) {
-      o["tags"] = tags;
+      patrolObject["tags"] = tags;
     }
 
     const antag_failures = [];
@@ -289,19 +289,19 @@ function App() {
       }
     }
     if (antag_failures.length !== 0) {
-      o["antag_fail_outcomes"] = antag_failures;
+      patrolObject["antag_fail_outcomes"] = antag_failures;
     }
     if (antag_successes.length !== 0) {
-      o["antag_success_outcomes"] = antag_successes;
+      patrolObject["antag_success_outcomes"] = antag_successes;
     }
     if (successes.length !== 0) {
-      o["success_outcomes"] = successes;
+      patrolObject["success_outcomes"] = successes;
     }
     if (failures.length !== 0) {
-      o["fail_outcomes"] = failures;
+      patrolObject["fail_outcomes"] = failures;
     }
 
-    return JSON.stringify(o, undefined, 2);
+    return JSON.stringify(patrolObject, undefined, 2);
   }
 
   return (
