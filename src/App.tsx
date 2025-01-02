@@ -4,6 +4,7 @@ import {
   Checkbox,
   Divider,
   Group,
+  Modal,
   MultiSelect,
   Radio,
   RangeSlider,
@@ -18,6 +19,8 @@ import { Outcome } from "./types";
 import OutcomeForm from "./components/OutcomeForm";
 import CatTypeSelector from "./components/CatTypeSelector";
 import { useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
+import { CodeHighlight } from "@mantine/code-highlight";
 
 const marks = [
   { value: 1, label: 1 },
@@ -121,6 +124,7 @@ const defaultMinRelationships = [
 ];
 
 function App() {
+  // patrol variables
   const [catTypeCounts, setCatTypeCounts] = useState(defaultCatTypeCount);
   const [biome, setBiome] = useState<string[]>(["any"]);
   const [season, setSeason] = useState<string[]>(["any"]);
@@ -139,6 +143,10 @@ function App() {
   const [declineText, setDeclineText] = useState("");
 
   const [outcomes, setOutcomes] = useState<Outcome[]>([]);
+
+  // display variables
+  const [opened, { open, close }] = useDisclosure(false);
+  const [code, setCode] = useState("");
 
   function handleCatTypeCountsChange(
     index: number,
@@ -293,7 +301,7 @@ function App() {
       o["fail_outcomes"] = failures;
     }
 
-    console.log(o);
+    return JSON.stringify(o, undefined, 2);
   }
 
   return (
@@ -505,7 +513,14 @@ function App() {
         Add Outcome
       </Button>
 
-      <Button onClick={exportPatrol}>To JSON Object</Button>
+      <Button onClick={() => {
+        setCode(exportPatrol());
+        open();
+      }}>To JSON Object</Button>
+
+      <Modal opened={opened} onClose={close}>
+        <CodeHighlight code={code} language="json" />
+      </Modal>
     </Box>
   );
 }
