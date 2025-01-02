@@ -1,12 +1,21 @@
-import { Fieldset, Group, NumberInput, Radio, Textarea } from "@mantine/core";
+import {
+  Button,
+  Fieldset,
+  Group,
+  NumberInput,
+  Radio,
+  Textarea,
+} from "@mantine/core";
 import { Outcome } from "../types";
 
 function OutcomeForm({
   outcome,
   setOutcome,
+  deleteOutcome,
 }: {
   outcome: Outcome;
   setOutcome: (value: Outcome) => void;
+  deleteOutcome: () => void;
 }) {
   return (
     <Fieldset>
@@ -45,6 +54,12 @@ function OutcomeForm({
         label="Outcome text"
         placeholder="Enter text"
       />
+
+      <Group mt="md" justify="flex-end">
+        <Button onClick={deleteOutcome} variant="filled" color="red">
+          Delete Outcome
+        </Button>
+      </Group>
     </Fieldset>
   );
 }

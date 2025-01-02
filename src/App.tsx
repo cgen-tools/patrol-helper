@@ -179,6 +179,15 @@ function App() {
     setOutcomes([...outcomes, newOutcome]);
   }
 
+  function deleteOutcome(index: number) {
+    const newOutcomes = outcomes.filter((v, i) => {
+      if (i !== index) {
+        return v;
+      }
+    });
+    setOutcomes(newOutcomes);
+  }
+
   function editOutcome(index: number, newOutcome: Outcome) {
     const newOutcomes = outcomes.map((v, i) => {
       if (i === index) {
@@ -484,6 +493,7 @@ function App() {
       {outcomes.map((outcome, index) => (
         <OutcomeForm
           outcome={outcome}
+          deleteOutcome={() => deleteOutcome(index)}
           setOutcome={(newValue) => editOutcome(index, newValue)}
         />
       ))}
