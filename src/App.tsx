@@ -125,11 +125,11 @@ const defaultMinRelationships = [
 
 function App() {
   // patrol variables
-  const [catTypeCounts, setCatTypeCounts] = useState(defaultCatTypeCount);
   const [biome, setBiome] = useState<string[]>(["any"]);
   const [season, setSeason] = useState<string[]>(["any"]);
   const [patrolType, setPatrolType] = useState("hunting");
   const [numCats, setNumCats] = useState<[number, number]>([1, 6]);
+  const [catTypeCounts, setCatTypeCounts] = useState(defaultCatTypeCount);
   const [plSkillReqs, setPlSkillReqs] = useState<string[]>([]);
   const [relationshipReqs, setRelationshipReqs] = useState<string[]>([]);
   const [minRelationships, setMinRelationships] = useState(
