@@ -361,13 +361,9 @@ function App() {
         />
       ))}
 
-      <Text mt="sm" fw={500} size="sm">
-        p_l Minimum Skill Level Requirements (only one needs to be true)
-      </Text>
-      <Text size="xs">
-        Higher levels of SKILL will also fulfill the requirement
-      </Text>
       <MultiSelect
+        label="p_l Minimum Skill Level Requirements (only one needs to be true)"
+        description="Higher levels of SKILL will also fulfill the requirement"
         value={plSkillReqs}
         onChange={setPlSkillReqs}
         placeholder="Select skills"
