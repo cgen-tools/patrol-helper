@@ -7,7 +7,6 @@ import {
   Modal,
   MultiSelect,
   Radio,
-  RangeSlider,
   Slider,
   Space,
   Stack,
