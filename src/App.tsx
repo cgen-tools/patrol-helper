@@ -115,6 +115,22 @@ const defaultMinRelationships = [
   },
 ];
 
+const biomeToAbbrev: Record<string, string> = {
+  "mountainous": "mtn",
+  "plains": "pln",
+  "forest": "fst",
+  "beach": "bch",
+  "wetlands": "wtlnd",
+  "desert": "dst",
+}
+
+const typeToAbbrev: Record<string, string> = {
+  "hunting": "hunt",
+  "border": "bord",
+  "training": "train",
+  "herb_gathering": "med",
+}
+
 function App() {
   // patrol variables
   const [patrolId, setPatrolId] = useState("");
@@ -140,6 +156,14 @@ function App() {
   // display variables
   const [opened, { open, close }] = useDisclosure(false);
   const [code, setCode] = useState("");
+
+  var id = "";
+  if (biome.length !== 1 || biome.includes("any")) {
+    id += "gen_"
+  } else {
+    id += `${biomeToAbbrev[biome[0]]}_`;
+  }
+  id += `${typeToAbbrev[patrolType]}_`;
 
   function handleCatTypeCountsChange(
     index: number,
@@ -211,7 +235,7 @@ function App() {
 
   function exportPatrol() {
     const patrolObject: Record<string, any> = {
-      patrol_id: patrolId,
+      patrol_id: id + patrolId,
       biome: biome,
       season: season,
       types: [patrolType],
@@ -309,11 +333,17 @@ function App() {
 
   return (
     <Box maw="40em" p="lg">
-      <TextInput
-        value={patrolId}
-        onChange={(value) => setPatrolId(value.currentTarget.value)}
-        label="Patrol ID"
-      />
+      <Text mt="sm" fw={500} size="sm">
+        Patrol ID
+      </Text>
+      <Group>
+        <Text>{id}</Text>
+        <TextInput
+          value={patrolId}
+          onChange={(value) => setPatrolId(value.currentTarget.value)}
+        />
+      </Group>
+
       <Checkbox.Group
         value={biome}
         onChange={setBiome}
