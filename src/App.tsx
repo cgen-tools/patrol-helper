@@ -12,6 +12,7 @@ import {
   Stack,
   Text,
   Textarea,
+  TextInput,
 } from "@mantine/core";
 import { SKILLS } from "./resources";
 import { Outcome } from "./types";
@@ -116,6 +117,7 @@ const defaultMinRelationships = [
 
 function App() {
   // patrol variables
+  const [patrolId, setPatrolId] = useState("");
   const [biome, setBiome] = useState<string[]>(["any"]);
   const [season, setSeason] = useState<string[]>(["any"]);
   const [patrolType, setPatrolType] = useState("hunting");
@@ -209,6 +211,7 @@ function App() {
 
   function exportPatrol() {
     const patrolObject: Record<string, any> = {
+      patrol_id: patrolId,
       biome: biome,
       season: season,
       types: [patrolType],
@@ -306,7 +309,18 @@ function App() {
 
   return (
     <Box maw="40em" p="lg">
-      <Checkbox.Group value={biome} onChange={setBiome} required label="Biome">
+      <TextInput
+        value={patrolId}
+        onChange={(value) => setPatrolId(value.currentTarget.value)}
+        label="Patrol ID"
+      />
+      <Checkbox.Group
+        value={biome}
+        onChange={setBiome}
+        mt="sm"
+        required
+        label="Biome"
+      >
         <Group>
           <Checkbox value="any" label="Any" />
           <Checkbox value="mountainous" label="Mountainous" />
