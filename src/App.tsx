@@ -217,6 +217,7 @@ function App() {
       types: [patrolType],
       min_cats: numCats[0],
       max_cats: numCats[1],
+      patrol_art: null,
       intro_text: introText,
       decline_text: declineText,
     };
@@ -271,9 +272,8 @@ function App() {
     for (const tag of misc) {
       tags.push(tag);
     }
-    if (tags.length !== 0) {
-      patrolObject["tags"] = tags;
-    }
+    // tags is required so even if it's empty it's OK
+    patrolObject["tags"] = tags;
 
     const antag_failures = [];
     const antag_successes = [];
