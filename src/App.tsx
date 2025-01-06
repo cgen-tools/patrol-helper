@@ -263,6 +263,9 @@ function App() {
     const relationship_constraints: string[] = [];
     for (const constraint of relationshipReqs) {
       if (constraint == "rom_two_apps") {
+        if (!tags.includes("romantic")) {
+          tags.push("romantic");
+        }
         tags.push("rom_two_apps");
       } else if (constraint === "romantic") {
         tags.push("romantic");
