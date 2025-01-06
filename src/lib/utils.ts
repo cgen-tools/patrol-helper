@@ -206,4 +206,18 @@ function getDefaultSuccessChance(
   return chance;
 }
 
-export { getDefaultSuccessChance };
+function convertRarityToWeight(rarity: string) {
+  var weight = 20;
+  if (rarity === "prevalent") {
+    return 40;
+  } else if (rarity === "common") {
+    return 30;
+  } else if (rarity === "rare") {
+    return 10;
+  } else if (rarity === "very rare") {
+    return 5;
+  }
+  return weight;
+}
+
+export { getDefaultSuccessChance, convertRarityToWeight };
