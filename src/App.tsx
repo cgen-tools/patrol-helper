@@ -15,6 +15,7 @@ import {
   TextInput,
 } from "@mantine/core";
 import { SKILLS } from "./resources";
+import { getDefaultSuccessChance } from "./lib/utils";
 import { Outcome } from "./types";
 import OutcomeForm from "./components/OutcomeForm";
 import CatTypeSelector from "./components/CatTypeSelector";
