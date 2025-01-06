@@ -23,6 +23,7 @@ import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { CodeHighlight } from "@mantine/code-highlight";
 import NumCatsSlider from "./components/NumCatsSlider";
+import RaritySelector from "./components/RaritySelector";
 
 type CatTypeCount = {
   name: string;
@@ -494,21 +495,7 @@ function App() {
         );
       })}
 
-      <Radio.Group
-        value={rarity}
-        onChange={setRarity}
-        mt="sm"
-        defaultValue="standard"
-        label="Rarity"
-      >
-        <Group>
-          <Radio value="prevalent" label="Prevalent" />
-          <Radio value="common" label="Common" />
-          <Radio value="standard" label="Standard" />
-          <Radio value="rare" label="Uncommon" />
-          <Radio value="very rare" label="Rare" />
-        </Group>
-      </Radio.Group>
+      <RaritySelector value={rarity} onChange={setRarity} />
 
       <Radio.Group
         value={difficulty}
