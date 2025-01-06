@@ -117,20 +117,20 @@ const defaultMinRelationships = [
 ];
 
 const biomeToAbbrev: Record<string, string> = {
-  "mountainous": "mtn",
-  "plains": "pln",
-  "forest": "fst",
-  "beach": "bch",
-  "wetlands": "wtlnd",
-  "desert": "dst",
-}
+  mountainous: "mtn",
+  plains: "pln",
+  forest: "fst",
+  beach: "bch",
+  wetlands: "wtlnd",
+  desert: "dst",
+};
 
 const typeToAbbrev: Record<string, string> = {
-  "hunting": "hunt",
-  "border": "bord",
-  "training": "train",
-  "herb_gathering": "med",
-}
+  hunting: "hunt",
+  border: "bord",
+  training: "train",
+  herb_gathering: "med",
+};
 
 function App() {
   // patrol variables
@@ -160,7 +160,7 @@ function App() {
 
   var id = "";
   if (biome.length !== 1 || biome.includes("any")) {
-    id += "gen_"
+    id += "gen_";
   } else {
     id += `${biomeToAbbrev[biome[0]]}_`;
   }
