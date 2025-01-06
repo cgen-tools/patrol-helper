@@ -291,7 +291,17 @@ function App() {
     }
 
     // set weight
-    patrolObject["weight"] = 20;
+    var weight = 20;
+    if (rarity === "prevalent") {
+      weight = 40;
+    } else if (rarity === "common") {
+      weight = 30;
+    } else if (rarity === "rare") {
+      weight = 10;
+    } else if (rarity === "very rare") {
+      weight = 5;
+    }
+    patrolObject["weight"] = weight;
 
     // set chance_of_success
     patrolObject["chance_of_success"] = getDefaultSuccessChance(
