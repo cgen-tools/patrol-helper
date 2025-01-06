@@ -294,7 +294,11 @@ function App() {
     patrolObject["weight"] = 20;
 
     // set chance_of_success
-    patrolObject["chance_of_success"] = 40;
+    patrolObject["chance_of_success"] = getDefaultSuccessChance(
+      biome,
+      patrolType,
+      season,
+    );
 
     // set misc tags
     for (const tag of misc) {
