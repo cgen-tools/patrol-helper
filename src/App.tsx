@@ -246,7 +246,7 @@ function App() {
       decline_text: declineText,
     };
 
-    const tags = [];
+    const tags: string[] = [];
 
     // set min_max_status
     const min_max_status: Record<string, [number, number]> = {};
