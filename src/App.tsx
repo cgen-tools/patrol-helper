@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Checkbox,
+  Code,
   Divider,
   Group,
   Modal,
@@ -21,7 +22,6 @@ import OutcomeForm from "./components/OutcomeForm";
 import CatTypeSelector from "./components/CatTypeSelector";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
-import { CodeHighlight } from "@mantine/code-highlight";
 import NumCatsSlider from "./components/NumCatsSlider";
 import RaritySelector from "./components/RaritySelector";
 
@@ -551,7 +551,7 @@ function App() {
           To JSON Object
         </Button>
         <Modal opened={opened} onClose={close}>
-          <CodeHighlight code={code} language="json" />
+          <Code block>{code}</Code>
         </Modal>
       </Group>
     </Box>
