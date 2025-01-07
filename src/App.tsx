@@ -203,7 +203,7 @@ function App() {
       outcomeType: "success",
       exp: 20,
       text: "",
-      weight: 20,
+      rarity: "standard",
     };
     setOutcomes([...outcomes, newOutcome]);
   }
@@ -232,7 +232,7 @@ function App() {
     const outcomeObject: Record<string, any> = {
       text: outcome.text,
       exp: outcome.exp,
-      weight: outcome.weight,
+      weight: convertRarityToWeight(outcome.rarity),
     };
     return outcomeObject;
   }

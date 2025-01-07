@@ -1,6 +1,6 @@
 type Outcome = {
   outcomeType: string;
-  weight: number;
+  rarity: string;
   exp: number;
   text: string;
 };
