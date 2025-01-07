@@ -7,6 +7,7 @@ import {
   Textarea,
 } from "@mantine/core";
 import { Outcome } from "../types";
+import RaritySelector from "./RaritySelector";
 
 function OutcomeForm({
   outcome,
@@ -34,6 +35,11 @@ function OutcomeForm({
           <Radio value="antag_failure" label="Antagonize Failure" />
         </Group>
       </Radio.Group>
+
+      <RaritySelector
+        value={outcome.rarity}
+        onChange={(newValue) => setOutcome({ ...outcome, rarity: newValue })}
+      />
 
       <NumberInput
         value={outcome.exp}
