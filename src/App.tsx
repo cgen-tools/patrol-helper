@@ -538,22 +538,22 @@ function App() {
           setOutcome={(newValue) => editOutcome(index, newValue)}
         />
       ))}
-      <Button variant="light" onClick={addOutcome}>
-        Add Outcome
-      </Button>
-
-      <Button
-        onClick={() => {
-          setCode(exportPatrol());
-          open();
-        }}
-      >
-        To JSON Object
-      </Button>
-
-      <Modal opened={opened} onClose={close}>
-        <CodeHighlight code={code} language="json" />
-      </Modal>
+      <Group mt="lg">
+        <Button variant="light" onClick={addOutcome}>
+          Add Outcome
+        </Button>
+        <Button
+          onClick={() => {
+            setCode(exportPatrol());
+            open();
+          }}
+        >
+          To JSON Object
+        </Button>
+        <Modal opened={opened} onClose={close}>
+          <CodeHighlight code={code} language="json" />
+        </Modal>
+      </Group>
     </Box>
   );
 }

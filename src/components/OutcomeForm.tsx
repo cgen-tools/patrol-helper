@@ -19,7 +19,7 @@ function OutcomeForm({
   deleteOutcome: () => void;
 }) {
   return (
-    <Fieldset>
+    <Fieldset mb="sm">
       <Radio.Group
         value={outcome.outcomeType}
         onChange={(newValue) =>
