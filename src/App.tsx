@@ -339,7 +339,7 @@ function App() {
       patrolObject["fail_outcomes"] = failures;
     }
 
-    return JSON.stringify(patrolObject, undefined, 2);
+    return JSON.stringify(patrolObject, undefined, 4);
   }
 
   return (
