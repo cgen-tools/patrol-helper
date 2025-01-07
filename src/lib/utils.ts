@@ -199,6 +199,9 @@ function getDefaultSuccessChance(
   if (biome.length !== 1 || season.length !== 1) {
     return genSuccessChance[patrolType];
   }
+  if (biome[0] === "any") {
+    return genSuccessChance[patrolType];
+  }
   const chance = defaultSuccessChances[biome[0]][patrolType][season[0]];
   if (chance === undefined) {
     return genSuccessChance[patrolType];
