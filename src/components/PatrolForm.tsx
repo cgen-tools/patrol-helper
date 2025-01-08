@@ -159,7 +159,7 @@ function PatrolForm() {
   const [opened, { open, close }] = useDisclosure(false);
   const [code, setCode] = useState("");
 
-  var id = "";
+  let id = "";
   if (biome.length !== 1 || biome.includes("any")) {
     id += "gen_";
   } else {
@@ -416,6 +416,7 @@ function PatrolForm() {
 
       {catTypeCounts.map((value, index) => (
         <CatTypeSelector
+          key={index.toString()}
           label={value.label}
           value={catTypeCounts[index].value}
           onChange={(newValue) => {
@@ -533,6 +534,7 @@ function PatrolForm() {
       <Divider my="md" />
       {outcomes.map((outcome, index) => (
         <OutcomeForm
+          key={index.toString()}
           outcome={outcome}
           deleteOutcome={() => deleteOutcome(index)}
           setOutcome={(newValue) => editOutcome(index, newValue)}

@@ -210,7 +210,7 @@ function getDefaultSuccessChance(
 }
 
 function convertRarityToWeight(rarity: string) {
-  var weight = 20;
+  const weight = 20;
   if (rarity === "prevalent") {
     return 40;
   } else if (rarity === "common") {
