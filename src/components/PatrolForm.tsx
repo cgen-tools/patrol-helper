@@ -38,7 +38,7 @@ const defaultCatTypeCount: CatTypeCount[] = [
     value: undefined,
   },
   {
-    name: "normal_adult",
+    name: "normal adult",
     label: "Warriors, Leaders, or Deputies",
     value: undefined,
   },
