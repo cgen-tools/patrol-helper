@@ -64,7 +64,7 @@ function CatTypeSelector({
           />
         </GridCol>
         {open && (
-          <GridCol span={6} offset={6}>
+          <GridCol span={{ base: 12, xs: 6 }} offset={{ base: 0, xs: 6 }}>
             <RangeSlider
               label={null}
               size="md"
