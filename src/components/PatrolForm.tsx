@@ -229,6 +229,7 @@ function PatrolForm() {
   }
 
   function exportOutcome(outcome: Outcome) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const outcomeObject: Record<string, any> = {
       text: outcome.text,
       exp: outcome.exp,
@@ -238,6 +239,7 @@ function PatrolForm() {
   }
 
   function exportPatrol() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const patrolObject: Record<string, any> = {
       patrol_id: id + patrolId,
       biome: biome,
