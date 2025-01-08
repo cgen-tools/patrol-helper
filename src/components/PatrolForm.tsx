@@ -536,6 +536,7 @@ function PatrolForm() {
           outcome={outcome}
           deleteOutcome={() => deleteOutcome(index)}
           setOutcome={(newValue) => editOutcome(index, newValue)}
+          canDelete={index > 1}
         />
       ))}
       <Group mt="lg">

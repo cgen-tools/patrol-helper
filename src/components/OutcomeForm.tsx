@@ -13,10 +13,12 @@ function OutcomeForm({
   outcome,
   setOutcome,
   deleteOutcome,
+  canDelete = true,
 }: {
   outcome: Outcome;
   setOutcome: (value: Outcome) => void;
   deleteOutcome: () => void;
+  canDelete: boolean;
 }) {
   return (
     <Fieldset mb="sm">
@@ -61,11 +63,13 @@ function OutcomeForm({
         placeholder="Enter text"
       />
 
-      <Group mt="md" justify="flex-end">
-        <Button onClick={deleteOutcome} variant="filled" color="red">
-          Delete Outcome
-        </Button>
-      </Group>
+      {canDelete &&
+        <Group mt="md" justify="flex-end">
+          <Button onClick={deleteOutcome} variant="filled" color="red">
+            Delete Outcome
+          </Button>
+        </Group>
+      }
     </Fieldset>
   );
 }
