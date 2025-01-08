@@ -152,7 +152,20 @@ function PatrolForm() {
   const [introText, setIntroText] = useState("");
   const [declineText, setDeclineText] = useState("");
 
-  const [outcomes, setOutcomes] = useState<Outcome[]>([]);
+  const [outcomes, setOutcomes] = useState<Outcome[]>([
+    {
+      outcomeType: "success",
+      rarity: "standard",
+      exp: 20,
+      text: "",
+    },
+    {
+      outcomeType: "failure",
+      rarity: "standard",
+      exp: 20,
+      text: "",
+    },
+  ]);
 
   // display variables
   const [opened, { open, close }] = useDisclosure(false);
