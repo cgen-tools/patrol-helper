@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import NumCatsSlider from "./NumCatsSlider";
 import RaritySelector from "./RaritySelector";
+import CopyClipboardButton from "./CopyClipboardButton";
 
 type CatTypeCount = {
   name: string;
@@ -552,7 +553,10 @@ function PatrolForm() {
           To JSON Object
         </Button>
         <Modal opened={opened} onClose={close}>
-          <Code block>{code}</Code>
+          <Stack>
+            <CopyClipboardButton value={code} />
+            <Code block>{code}</Code>
+          </Stack>
         </Modal>
       </Group>
     </Box>
