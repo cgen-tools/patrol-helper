@@ -15,15 +15,15 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { SKILLS } from "./resources";
-import { convertRarityToWeight, getDefaultSuccessChance } from "./lib/utils";
-import { Outcome } from "./types";
-import OutcomeForm from "./components/OutcomeForm";
-import CatTypeSelector from "./components/CatTypeSelector";
+import { SKILLS } from "../resources";
+import { convertRarityToWeight, getDefaultSuccessChance } from "../lib/utils";
+import { Outcome } from "../types";
+import OutcomeForm from "./OutcomeForm";
+import CatTypeSelector from "./CatTypeSelector";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
-import NumCatsSlider from "./components/NumCatsSlider";
-import RaritySelector from "./components/RaritySelector";
+import NumCatsSlider from "./NumCatsSlider";
+import RaritySelector from "./RaritySelector";
 
 type CatTypeCount = {
   name: string;
@@ -133,7 +133,7 @@ const typeToAbbrev: Record<string, string> = {
   herb_gathering: "med",
 };
 
-function App() {
+function PatrolForm() {
   // patrol variables
   const [patrolId, setPatrolId] = useState("");
   const [biome, setBiome] = useState<string[]>(["any"]);
@@ -558,4 +558,4 @@ function App() {
   );
 }
 
-export default App;
+export default PatrolForm;
