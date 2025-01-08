@@ -15,11 +15,7 @@ const marks = [
   { value: 6, label: 6 },
 ];
 
-enum allowedState {
-  DontCare = "Don't Care",
-  Forbidden = "Forbidden",
-  Required = "Required",
-}
+type catTypeStatus = "Don't Care" | "Forbidden" | "Required";
 
 function CatTypeSelector({
   label,
@@ -30,16 +26,16 @@ function CatTypeSelector({
   value: [number, number] | undefined;
   onChange: (val: [number, number] | undefined) => void | undefined;
 }) {
-  let allowedStatus: allowedState = allowedState.DontCare;
+  let allowedStatus: catTypeStatus = "Don't Care";
   if (value === undefined) {
-    allowedStatus = allowedState.DontCare;
+    allowedStatus = "Don't Care";
   } else if (value[0] == -1 && value[1] == -1) {
-    allowedStatus = allowedState.Forbidden;
+    allowedStatus = "Forbidden";
   } else {
-    allowedStatus = allowedState.Required;
+    allowedStatus = "Required";
   }
 
-  const open = allowedStatus == allowedState.Required;
+  const open = allowedStatus == "Required";
 
   return (
     <>
@@ -51,15 +47,15 @@ function CatTypeSelector({
           <SegmentedControl
             fullWidth
             data={[
-              allowedState.Forbidden,
-              allowedState.DontCare,
-              allowedState.Required,
+              "Forbidden",
+              "Don't Care",
+              "Required",
             ]}
             value={allowedStatus}
             onChange={(newAllowedStatus) => {
-              if (newAllowedStatus == allowedState.DontCare) {
+              if (newAllowedStatus == "Don't Care") {
                 onChange(undefined);
-              } else if (newAllowedStatus == allowedState.Forbidden) {
+              } else if (newAllowedStatus == "Forbidden") {
                 onChange([-1, -1]);
               } else {
                 onChange([1, 6]);
