@@ -147,7 +147,6 @@ function PatrolForm() {
     defaultMinRelationships,
   );
   const [rarity, setRarity] = useState("standard");
-  const [difficulty, setDifficulty] = useState("standard");
   const [misc, setMisc] = useState<string[]>([]);
 
   const [introText, setIntroText] = useState("");
@@ -489,22 +488,6 @@ function PatrolForm() {
       })}
 
       <RaritySelector value={rarity} onChange={setRarity} />
-
-      <Radio.Group
-        value={difficulty}
-        onChange={setDifficulty}
-        mt="sm"
-        defaultValue="standard"
-        label="Difficulty"
-      >
-        <Group>
-          <Radio value="very_easy" label="Very Easy" />
-          <Radio value="easy" label="Easy" />
-          <Radio value="standard" label="Standard" />
-          <Radio value="hard" label="Hard" />
-          <Radio value="very_hard" label="Very Hard" />
-        </Group>
-      </Radio.Group>
 
       <Checkbox.Group value={misc} onChange={setMisc} mt="sm" label="Misc.">
         <Stack gap="xs">
