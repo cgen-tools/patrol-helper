@@ -158,13 +158,13 @@ function PatrolForm() {
       outcomeType: "success",
       rarity: "standard",
       exp: 20,
-      text: "",
+      text: "Success outcome",
     },
     {
       outcomeType: "failure",
       rarity: "standard",
       exp: 0,
-      text: "",
+      text: "Failure outcome",
     },
   ]);
 
