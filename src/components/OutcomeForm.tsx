@@ -13,12 +13,12 @@ function OutcomeForm({
   outcome,
   setOutcome,
   deleteOutcome,
-  canDelete = true,
+  isDefault = false,
 }: {
   outcome: Outcome;
   setOutcome: (value: Outcome) => void;
   deleteOutcome: () => void;
-  canDelete: boolean;
+  isDefault: boolean;
 }) {
   return (
     <Fieldset mb="sm">
@@ -31,10 +31,10 @@ function OutcomeForm({
         label="Outcome Type"
       >
         <Group>
-          <Radio value="success" label="Success" />
-          <Radio value="failure" label="Failure" />
-          <Radio value="antag_success" label="Antagonize Success" />
-          <Radio value="antag_failure" label="Antagonize Failure" />
+          <Radio disabled={isDefault} value="success" label="Success" />
+          <Radio disabled={isDefault} value="failure" label="Failure" />
+          <Radio disabled={isDefault} value="antag_success" label="Antagonize Success" />
+          <Radio disabled={isDefault} value="antag_failure" label="Antagonize Failure" />
         </Group>
       </Radio.Group>
 
@@ -63,7 +63,7 @@ function OutcomeForm({
         placeholder="Enter text"
       />
 
-      {canDelete &&
+      {!isDefault &&
         <Group mt="md" justify="flex-end">
           <Button onClick={deleteOutcome} variant="filled" color="red">
             Delete Outcome
