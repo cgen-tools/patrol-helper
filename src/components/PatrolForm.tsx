@@ -163,7 +163,7 @@ function PatrolForm() {
     {
       outcomeType: "failure",
       rarity: "standard",
-      exp: 20,
+      exp: 0,
       text: "",
     },
   ]);
